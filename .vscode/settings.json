@@ -1,6 +1,9 @@
 {
-    "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    }
-  }
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "emmet.showExpandedAbbreviation": "always",
+  "editor.selectionHighlight": true,
+  "emmet.triggerExpansionOnTab": true
+}
