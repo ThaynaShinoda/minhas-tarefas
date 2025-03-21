@@ -1,19 +1,22 @@
 import styled from 'styled-components'
 import variables from '../../styles/variables'
+import * as enums from '../../utils/enums/task'
+import { Button } from '../../styles'
 
 type TagProps = {
-  priority?: string
-  status?: string
+  priority?: enums.Priority
+  $status?: enums.Status
 }
 
 function returnBackgroundColor(props: TagProps) {
-  if ('status' in props) {
-    if (props.status === 'pendente') return variables['yellow-light']
-    if (props.status === 'concluído') return variables.green
+  if ('$status' in props) {
+    if (props.$status === enums.Status.PENDENTE)
+      return variables['yellow-light']
+    if (props.$status === enums.Status.CONCLUIDA) return variables.green
     return '#ccc'
-  } else if ('priority' in props) {
-    if (props.priority === 'urgente') return variables.red
-    if (props.priority === 'importante') return variables.yellow
+  } else if ('$priority' in props) {
+    if (props.$priority === enums.Priority.URGENTE) return variables.red
+    if (props.$priority === enums.Priority.IMPORTANTE) return variables.yellow
     return variables.blue
   }
 }
@@ -24,15 +27,24 @@ export const Card = styled.div`
   padding: 1rem;
   margin-bottom: 2rem;
   border-radius: 16px;
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
 `
 
 export const Title = styled.h3`
   font-weight: bold;
   font-size: 1.125rem;
-  margin-bottom: 1rem;
+  margin-left: 8px;
 `
 
-export const Tag = styled.span<TagProps>`
+export const Tag = styled.span<{
+  $priority?: enums.Priority
+  $status?: enums.Status
+}>`
   padding: 0.25rem 0.5rem;
   font-size: 0.625rem;
   font-weight: bold;
@@ -62,20 +74,6 @@ export const ActionBar = styled.div`
   padding-top: 1rem;
 `
 
-export const Button = styled.button`
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #fff;
-  padding: 0.5rem 0.75rem;
-  border: none;
-  cursor: pointer;
-  background-color: #2f3640;
-  border-radius: 8px;
-  margin-right: 0.5rem;
-`
-export const SaveButton = styled(Button)`
-  background-color: ${variables.green};
-`
 export const CancelRemoveButton = styled(Button)`
   background-color: ${variables.red};
 `
